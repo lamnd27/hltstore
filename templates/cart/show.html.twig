@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cart{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h2 class="text-center mt-5 mb-3">Show Cart</h2>
+        <div class="card">
+            <div class="card-header">
+                <a class="btn btn-outline-info float-right" href="{{ path('app_cart_index') }}"> 
+                    View List Carts
+                </a>
+                <a class="btn btn-outline-warning ms-2" href="{{ path('app_cart_edit', {'id':cart.id})  }}"> 
+                    Edit
+                </a>
+            </div>
+            <div class="card-body">
+                <b class="text-muted">Cart ID:</b>
+                <p>{{ cart.id }}</p>
+                <b class="text-muted">Date:</b>
+                <p>{{ cart.cdate ? cart.cdate|date('Y-m-d H:i:s') : '' }}</p>
+                {% for d in data %}
+                <b class="text-muted">Product:</b>
+                <p>{{ d.pname }}</p>
+
+                <img src="{{asset('uploads/'~d.image)}}" width="500" height="500"> <br>
+                {% endfor %}
+                <br>
+                <b class="text-muted">Quantity:</b>
+                <p>{{ cart.cquantity }}</p>
+            </div>
+        </div>
+    </div>
+    {{ include('cart/_delete_form.html.twig') }}
+{% endblock %}
