@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Shop{% endblock %}
+
+{% block body %}
+<div class="container"> <span><h1>ALL PRODUCT</h5></span>
+         <div class="row justify-content-center">
+            {% for product in products %}
+               <div class="col-md-4" style="margin-bottom: 20px;">
+                  <div class="card h-100 shadow-sm">
+                    <a href="{{ path('app_product_show', {'id': product.id}) }}">
+                      <img src="{{ asset('uploads/'~product.image)}}" class="card-img-top" alt="product.title" />
+                    </a>
+
+                    <div class="label-top shadow-sm">
+                    </div>
+                    <div class="card-body">
+                      <div class="clearfix mb-3">
+                        <span class="float-start badge rounded-pill bg-success"> &dollar;{{ product.price }}</span>
+
+
+                      </div>
+                      <h5 class="card-title">
+                        <a target="_blank" href="{{ path('app_product_show', {'id': product.id}) }}">
+                           {{ product.pname }}
+                        </a>
+                      </h5>
+
+                      <div class="d-grid gap-2 my-4">
+
+                        <a href="{{ path('buy_product', {'id': product.id}) }}" class="btn btn-warning bold-btn">add to cart</a>
+
+                      </div>
+                      <div class="clearfix mb-1">
+
+                        <span class="float-start"><a href="#"><i class="fas fa-question-circle"></i></a></span>
+
+                        <span class="float-end">
+                          <i class="far fa-heart" style="cursor: pointer"></i>
+
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>    
+            {% endfor %}
+
+         </div>
+      </div>
+{% endblock %}
