@@ -21,14 +21,15 @@
         {% endblock %}
     </head>
     <body>
-        {% block body %}
+        {% block header %}
             <!--Main Navigation-->
             <header>
                 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
                     <div class="container-fluid text-center border-bottom">
 <!-- Logo -->
                         <a href="{{ path('Homepage') }}" class="navbar-brand">
-                            <img src="{{asset('uploads/Shinrin.jpg')}}" style="width:50px" alt="">
+                            
+                            <img src="{{asset('uploads/HLT.jpg')}}" style="width:50px" alt="Home">
                         </a>
 <!-- button toggler -->
                         <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navmenu">
@@ -38,18 +39,10 @@
                         <div class="collapse navbar-collapse" id="navmenu">
 <!---left -->
                             <div class="navbar-nav" >
-                                <a href="{{ path('app_product_index') }}" class="nav-link">All Product</a>
+                                <a href="{{ path('all_product') }}" class="nav-link">All Product</a>
                                 <a href="{{ path('app_cart_index') }}" class="nav-link">Cart</a>
 
-                                <div class="dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"> Categories</a>
-                                    <div class ="dropdown-menu"> 
-
-                                        <li><a href="category.php?id=<?=$row['cid']?> "><?php echo$row["cname"]; ?></a></li>
-
-                                        <li><a href="addcategory.php">&plus; New</a></li>
-                                    </div>
-                                </div>
+                            
 
                              </div>
 
@@ -58,20 +51,20 @@
 
 
 <!-- Right -->
-                            {# <div class="navbar-nav ms-auto">
-                                <a href="#" class="nav-link">Welcom, <?=$_COOKIE['cc_usr']?></a>
-                                <a href="logout.php" class="nav-link">LogOut</a>
-                            </div> #}
+                            
 
                             <div class="navbar-nav ms-auto">
-                                <a href="Login.php" class="nav-link">Login</a>
-                                <a href="Register.php" class="nav-link">Register</a>
+                                <a href="" class="nav-link">Login</a>
+                                <a href="{{ path('app_user_new') }}" class="nav-link">Register</a>
                             </div>
 
                         </div>
                     </div>
                 </nav>
             </header>
+        {% endblock %}
+        {% block body %}
+            
         {% endblock %}
     </body>
 </html>
