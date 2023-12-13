@@ -1,0 +1,56 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Branch index{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h2 class="text-center mt-5 mb-3">Branch Manager</h2>
+        <div class="card">
+            <div class="card-header">
+                <a class="btn btn-outline-primary" href="{{ path('app_branch_new') }}"> 
+                    Create New Branch 
+                </a>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Address</th>
+                <th>Bname</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for branch in branches %}
+            <tr>
+                <td>{{ branch.id }}</td>
+                <td>{{ branch.Address }}</td>
+                <td>{{ branch.bname }}</td>
+                <td>
+                    <form method="post" action="{{ path('app_branch_delete', {'id': branch.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                                <a
+                                    class="btn btn-outline-info"
+                                    href="{{ path('app_branch_show', {'id': branch.id}) }}">
+                                    Show
+                                </a>
+                                
+                                <a
+                                    class="btn btn-outline-success"
+                                    href="{{ path('app_branch_edit', {'id': branch.id}) }}">
+                                    Edit
+                                </a>
+ 
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ branch.id) }}">
+                                <button class="btn btn-outline-danger">Delete</button>
+                            </form>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
