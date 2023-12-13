@@ -1,0 +1,29 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Product{% endblock %}
+
+{% block body %}
+    <div class="container">
+            <h2 class="text-center mt-5 mb-3">Show Product</h2>
+            <div class="card">
+                <div class="card-header">
+                    <a class="btn btn-outline-info float-right" href="{{ path('app_product_index') }}"> 
+                        View All Products
+                    </a>
+                    <a class="btn btn-outline-warning ms-2" href="{{ path('app_product_edit', {'id':product.id})  }}"> 
+                        Edit
+                    </a>
+                </div>
+                <div class="card-body">
+                    <b class="text-muted">Name:</b>
+                    <p>{{ product.pname }}</p>
+                    <b class="text-muted">Description:</b>
+                    <p>{{ product.pdesc }}</p>
+                    <b class="text-muted">Price:</b>
+                    <p>{{ product.price }}</p>
+                    <img src="{{asset('uploads/'~product.image)}}" width="500" height="500"> <br>
+                </div>
+            </div>
+    </div>
+    
+{% endblock %}
