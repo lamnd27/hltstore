@@ -51,7 +51,9 @@ class ShopController extends AbstractController
         }
 
 
-        return new Response('ok');
+        return $this->render('cart/index.html.twig', [
+            'carts' => $cr->findAll(),
+        ]);
         // return $this->render('shop/test.html.twig', [
         //     're' => $re[0]
         // ]);
